@@ -32,6 +32,23 @@ public class ProductManagerTest {
 
         Product[] actual = manager.showAll();
         Product[] expected = {product1, product2, product3, product4, product5, product6, product7, product8, product9};
+
+        Product[] actual1 = manager.searchBy("Ламп");
+        Product[] expected1 = {product1, product3};
+
+        manager.deleteById(4183);
+        manager.deleteById(4286);
+        manager.deleteById(4389);
+
+        Product[] actual2 = manager.showAll();
+        Product[] expected2 = {product1, product2, product4, product5, product7, product8};
+
+        Product[] actual3 = manager.searchBy("Ламп");
+        Product[] expected3 = {product1};
+
         Assertions.assertArrayEquals(expected, actual);
+        Assertions.assertArrayEquals(expected1, actual1);
+        Assertions.assertArrayEquals(expected2, actual2);
+        Assertions.assertArrayEquals(expected3, actual3);
     }
 }

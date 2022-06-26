@@ -2,8 +2,6 @@ package ru.netology.statistic;
 
 public class ProductRepository {
     private Product[] products = new Product[0];
-    private Smartphone[] smartphones = new Smartphone[0];
-    private Book[] books = new Book[0];
 
     public void save(Product product) {
         int lenght = products.length + 1;

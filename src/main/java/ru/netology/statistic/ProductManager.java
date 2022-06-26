@@ -1,16 +1,24 @@
 package ru.netology.statistic;
 
 public class ProductManager {
-    private  ProductRepository repository;
+    private ProductRepository repository;
 
-    public ProductManager(ProductRepository repository) {this.repository = repository;}
+    public ProductManager(ProductRepository repository) {
+        this.repository = repository;
+    }
 
-    public void add(Product product) {repository.save(product);}
+    public void add(Product product) {
+        repository.save(product);
+    }
+
     public Product[] showAll() {
         Product[] products = repository.findAll();
         return products;
     }
-    public void deleteById(int id) {repository.removeById(id);}
+
+    public void deleteById(int id) {
+        repository.removeById(id);
+    }
 
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];
