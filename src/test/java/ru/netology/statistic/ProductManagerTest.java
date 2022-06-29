@@ -16,7 +16,7 @@ public class ProductManagerTest {
     Product product9 = new Smartphone(4389, "Galaxy Z Flip3", 110000, "Samsung");
 
     @Test
-    public void PMTest() {
+    public void showAllTest() {
         ProductRepository repository = new ProductRepository();
         ProductManager manager = new ProductManager(repository);
 
@@ -33,22 +33,77 @@ public class ProductManagerTest {
         Product[] actual = manager.showAll();
         Product[] expected = {product1, product2, product3, product4, product5, product6, product7, product8, product9};
 
-        Product[] actual1 = manager.searchBy("Ламп");
-        Product[] expected1 = {product1, product3};
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void SearchByTest() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product5);
+        manager.add(product6);
+        manager.add(product7);
+        manager.add(product8);
+        manager.add(product9);
+
+        Product[] actual = manager.searchBy("Ламп");
+        Product[] expected = {product1, product3};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void DeleteByIdTest() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product5);
+        manager.add(product6);
+        manager.add(product7);
+        manager.add(product8);
+        manager.add(product9);
 
         manager.deleteById(4183);
         manager.deleteById(4286);
         manager.deleteById(4389);
 
-        Product[] actual2 = manager.showAll();
-        Product[] expected2 = {product1, product2, product4, product5, product7, product8};
-
-        Product[] actual3 = manager.searchBy("Ламп");
-        Product[] expected3 = {product1};
+        Product[] actual = manager.showAll();
+        Product[] expected = {product1, product2, product4, product5, product7, product8};
 
         Assertions.assertArrayEquals(expected, actual);
-        Assertions.assertArrayEquals(expected1, actual1);
-        Assertions.assertArrayEquals(expected2, actual2);
-        Assertions.assertArrayEquals(expected3, actual3);
+    }
+
+    @Test
+    public void SearchBy2Test() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product5);
+        manager.add(product6);
+        manager.add(product7);
+        manager.add(product8);
+        manager.add(product9);
+
+        manager.deleteById(4183);
+        manager.deleteById(4286);
+        manager.deleteById(4389);
+
+        Product[] actual = manager.searchBy("Ламп");
+        Product[] expected = {product1};
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 }
