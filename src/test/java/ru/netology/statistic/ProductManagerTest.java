@@ -1,5 +1,7 @@
 package ru.netology.statistic;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -105,5 +107,25 @@ public class ProductManagerTest {
         Product[] expected = {product1};
 
         Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void NotFoundException() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product5);
+        manager.add(product6);
+        manager.add(product7);
+        manager.add(product8);
+        manager.add(product9);
+
+        assertThrows(NotFoundException.class, () -> {
+            manager.deleteById(4000);
+        });
     }
 }

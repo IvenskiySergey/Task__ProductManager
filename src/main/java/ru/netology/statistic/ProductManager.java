@@ -17,6 +17,9 @@ public class ProductManager {
     }
 
     public void deleteById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("Товар с id " + id + " не найден");
+        }
         repository.removeById(id);
     }
 
@@ -33,6 +36,15 @@ public class ProductManager {
             }
         }
         return result;
+    }
+
+    public Product findById(int id) {
+        for (Product product : repository.findAll()) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 
     public boolean matches(Product product, String search) {
